@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
-import { Home, SignIn, Recipe } from './componenets';
+import { Home, SignIn, Recipe, Favorites } from './componenets';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
@@ -15,6 +15,10 @@ ReactDOM.render(
 
         <Route exact path='/recipe'>
           <Recipe></Recipe>
+        </Route>
+
+        <Route exact path='/favorites'>
+          <Favorites></Favorites>
         </Route>
 
         <Route exact path='/signin'>

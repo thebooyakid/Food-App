@@ -25,7 +25,9 @@ export default function Meal({meal}) {
                 <li>Number of servings: {meal.servings}</li>
             </ul>
 
-            <a href={meal.sourceUrl}>Go to Recipe</a>
+            <a href={meal.sourceUrl} target="_blank">Go to Recipe</a>
+            {/* add onclick to add recipe to favorites page (make function) */}
+            <a href=''>Add to Favorites</a>
         </article>
     )
 }

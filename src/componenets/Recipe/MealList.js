@@ -1,11 +1,12 @@
 import React from 'react';
 import Meal from './Meal'
 
+
 export default function MealList({ mealData }){
     const nutrients = mealData.nutrients;
     return(
         <main>
-            <section className="nutrients">
+            {/* <section className="nutrients">
                 <h1>Macros</h1>
                 <ul>
                     <li>Calories: {nutrients.calories}</li>
@@ -13,7 +14,7 @@ export default function MealList({ mealData }){
                     <li>Fat: {nutrients.fat}</li>
                     <li>Protein: {nutrients.protein}</li>
                 </ul>
-            </section>
+            </section> */}
 
             <section class="meals">
                 {mealData.meals.map((meal) => {

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import pasta from '../../assets/images/pasta.jpg'
+// import pasta from '../../assets/images/pasta.jpg'
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -13,6 +13,8 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        background: '#c2c5aa',
+        borderRadius: 15,
     },
     logo:{
         margin: '0 0 0 0.45em'
@@ -38,23 +40,55 @@ const useStyles = makeStyles({
     },
     
     main: {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${pasta});`,
+        background: '#a4ac86',
+        borderRadius: 15,
         width: '100%',
         height: '100%',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
+        // backgroundSize: 'cover',
+        // backgroundRepeat: 'no-repeat',
+        // backgroundPosition: 'center',
         position: 'absolute',
-        opacity: 0.55,
+        // opacity: 0.55,
     },
     main_text:{
         textAlign: 'center',
         position: 'relative',
-        top: '50%',
+        top: '20%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        color: 'white',
+        color: '#333d29',
     },
+    button:{
+        background: '#333d29',
+        '&:hover': {
+          background: '#582f0e',
+        },
+        color: 'white',
+        border: 0,
+        borderRadius: 6,
+        boxShadow: '0 3px 5px 2px grey',
+        height: 30,
+        padding: '0 25px', 
+        margin: '5px 0'
+    },
+    motivational_text:{
+        color: 'white',
+        top: '45%',
+        left: '25%',
+        position: 'absolute',
+        background: '#582f0e',
+        padding: '2px',
+        borderRadius: 7,
+    },
+    diet_facts_text:{
+        color: 'white',
+        top: '45%',
+        left: '66%',
+        position: 'absolute',
+        background: '#582f0e',
+        padding: '2px',
+        borderRadius: 7,
+    }
     
 })
 
@@ -65,6 +99,9 @@ interface Props {
 export const Home = ( props:Props) => {
     
     const classes = useStyles();
+
+    const [show,setShow]=useState(true)
+    
     
     return (
         <div className={classes.root}>
@@ -81,6 +118,9 @@ export const Home = ( props:Props) => {
                             <Link to='recipe' href="" className={classes.nav_a}>Recipe</Link>
                         </li>
                         <li>
+                            <Link to='favorites' href="" className={classes.nav_a}>Favorites</Link>
+                        </li>
+                        <li>
                             <Link to='signin' href="" className={classes.nav_a}>Sign In</Link>
                         </li>
                     </ul>
@@ -92,10 +132,19 @@ export const Home = ( props:Props) => {
                     <h3>Plant Based. 45 Minutes.</h3>
                     <h3>No Bologna</h3>
                     <p>Get 3 options based off of search criteria</p>
-                    <Button color='primary' variant="contained">Sign up to Get Recipes!</Button>
+                    <Button className={classes.button}>Sign up to Get Recipes!</Button>
                 </div>
-
+                <div className={classes.motivational_text}>
+                    {/* make these clickable and onclick reveal a new fact */}
+                    {show?<p>Motivational Fact</p>:null}
+                    <Button onClick={()=>setShow(!show)}>Did you Know?</Button>
+                </div>
+                <div className={classes.diet_facts_text}>
+                    {show?<p>Health Fact</p>:null}
+                    <Button>Did you Know</Button>
+                </div>
             </main>
+            
         </div>
     )
 }
