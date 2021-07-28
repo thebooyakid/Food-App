@@ -5,45 +5,50 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
+  
 
   root:{
     padding: '0',
-    margin: '0'
-},
-navbar_container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    background: '#c2c5aa',
-    borderRadius: 15,
-},
-logo:{
-    margin: '0 0 0 0.45em'
-},
-logo_a: {
-    color: 'rgb(28,24,22)'
-},
-logo_navigation: {
-    listStyle: 'none',
-    textTransform: 'uppercase',
-    textDecoration: 'none'
-},
-navigation: {
-    display: 'flex'
-},
-nav_a:{
-    display: 'block',
-    padding: '1em',
-    color: 'black',
-    '&:hover': {
-        color: 'green',
-    }
-},
+    margin: '0',
+    // background: '#3d405b',
+    // height: '170vh'
+  },
+  navbar_container: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      background: '#81b29a',
+      borderRadius: 15,
+      width: '96%',
+      marginLeft: '2%',
+  },
+  logo:{
+      margin: '0 0 0 0.45em'
+  },
+  logo_a: {
+      color: 'rgb(28,24,22)'
+  },
+  logo_navigation: {
+      listStyle: 'none',
+      textTransform: 'uppercase',
+      textDecoration: 'none'
+  },
+  navigation: {
+      display: 'flex'
+  },
+  nav_a:{
+      display: 'block',
+      padding: '1em',
+      color: 'black',
+      '&:hover': {
+          color: 'f4f1de',
+      }
+  },
 
   button:{
-    background: 'green',
+    background: '#81b29a',
     '&:hover': {
-      background: 'red',
+      background: '#3d405b',
     },
     color: 'white',
     border: 0,
@@ -53,17 +58,38 @@ nav_a:{
     padding: '0 25px', 
     marginTop: '6px'
   },
+
   allergies:{
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
+    // background: '#F4F1DE',
+    // borderRadius: 15,
+    // width: '100%',
+    // height: '150%',
+    // position: 'absolute',
+    background: '#F4F1DE',
+    borderRadius: 15,
+    marginLeft: '5%',
+    marginTop: '3%',
+    width: '90%',
+    // height: '100%',
+    paddingBottom: '20px',
+    paddingTop: '10px'
   },
+
   controls:{
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
+    
   },
-
+  welcome:{
+    fontSize: 40
+  },
+  allergenReminder: {
+    fontSize: 14,
+  }
 
 
 })
@@ -77,6 +103,7 @@ export function Recipe() {
   const [allergies, setAllergies] = useState('');
   // const [ingredient, setIngredients] = useState('')
   
+  
   // function handleChange(event){
   //   setCalories(event.target.value);
   // }
@@ -88,7 +115,7 @@ export function Recipe() {
 
   function getMealData(){
     fetch(
-      `https://api.spoonacular.com/mealplanner/generate?apiKey=c899723440494d5a91d95fc2c51a6a98&diet=vegan&excludeIngredients=${allergies},vodka&timeFrame=day`
+      `https://api.spoonacular.com/mealplanner/generate?apiKey=c899723440494d5a91d95fc2c51a6a98&diet=vegan&excludeIngredients=vodka,persimmon,rum,tequila,alcohol,${allergies}&timeFrame=day`
       // &targetCalories=${calories}
       // &includeIngredients${ingredient}
       // `https://api.spoonacular.com/recipes/complexSearch?apiKey=c899723440494d5a91d95fc2c51a6a98&diet=vegan&excludeIngredients=vodka`
@@ -132,12 +159,15 @@ export function Recipe() {
 
   <div className={classes.allergies}>
     <section className={classes.controls}>
-      <h1>Welcome to the Recipe Generator</h1>
-      <h2>Press the Button Below to get 3 delicious Meal Options</h2>
-      <h3>Don't Forget to Fill In the Box if There are Any Foods to Avoid</h3>
+      <h1 className={classes.welcome}>Welcome to the Recipe Generator</h1>
+      <h3>Press the Button Below to get 3 delicious Meal Options</h3>
+      {/* <p>Don't Forget to Fill In the Box if There are Any Foods to Avoid</p> */}
+      <p>&nbsp;</p>
+      <p className={classes.allergenReminder}>Enter any foods you wish to avoid</p>
+      <p>&nbsp;</p>
       <input
       type="string"
-      placeholder="Enter allergy food"
+      placeholder="food allergies"
       onChange={handleChange}/>
     </section>
     <Button className={classes.button} onClick={getMealData}>Get Options</Button>
@@ -146,4 +176,4 @@ export function Recipe() {
   </div>
   )}
 
-// export function Recipe()
+

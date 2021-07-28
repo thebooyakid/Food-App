@@ -1,27 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Meal from '../Recipe/Meal'
 
-// export const Favorites = () => {
-//     return (
-//         <div>
-//             <h1>Faves</h1>
-//         </div>
-//     )
-// }
 
 const useStyles = makeStyles({
     root:{
         padding: '0',
-        margin: '0'
+        margin: '0',
     },
     navbar_container: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: '#c2c5aa',
+        background: '#81b29a',
         borderRadius: 15,
+        width: '96%',
+        marginLeft: '2%'
     },
     logo:{
         margin: '0 0 0 0.45em'
@@ -42,22 +38,32 @@ const useStyles = makeStyles({
         padding: '1em',
         color: 'black',
         '&:hover': {
-            color: 'green',
+            color: '#f4f1de',
         }
+    },
+    main: {
+        background: 'white',
+        borderRadius: 15,
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
     },
 })
 
-// export const Favorites = () => {
-
-// interface Props {
-//     title: string;
-// }
 
 export const Favorites = () => {
 
-    const classes = useStyles();
-    
+    const classes = useStyles(); 
+
+    const getData = () => {
+        let data = localStorage.getItem('myData') as string;
+        data = JSON.parse(data)
+        console.log(data)
+        return({data})
+    }
+  
     return (
+        
         <div className={classes.root}>
             <nav>
                 <div className={classes.navbar_container}>
@@ -74,6 +80,16 @@ export const Favorites = () => {
                     </ul>
                 </div>
             </nav>
+            <main className={classes.main}>
+                <Button onClick={ () => getData()}>Get Favorites</Button>
+                {/* {data.meals.map((meal) => {
+                        return <Meal key={meal.id} meal={meal} />
+                })}   */}
+      
+            
+            </main>
+            
+            
         </div>
     )
 }
