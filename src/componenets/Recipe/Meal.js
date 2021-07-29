@@ -54,11 +54,6 @@ const useStyles = makeStyles({
 export default function Meal({meal}) {
     
     const [imageUrl, setImageUrl] = useState ("")
-    // const [favorites, setFavorites] = useState([]);
-    // const addFavorite = (meal) => {
-    //     const newFavorite = [...favorites, meal.id]
-    //     setFavorites(newFavorite);
-    // };
 
     useEffect(() => {
         fetch(
@@ -68,9 +63,6 @@ export default function Meal({meal}) {
         .then((data) => {
             setImageUrl(data.image);
         })
-        // .catch(() => {
-        //     console.log("error");
-        // })
     }, [meal.id]);
 
     const setData = () => {

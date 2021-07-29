@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import { useAuth, AuthCheck } from 'reactfire';
 import 'firebase/auth';
 import { Input } from '../sharedComponents/input';
@@ -7,14 +7,9 @@ import { Container, Button, makeStyles, Typography, Snackbar,  } from '@material
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import {useSigninCheck} from 'reactfire';
+import { Link } from 'react-router-dom';
 
-// export const SignIn = () => {
-//     return (
-//         <div>
-//             <h1>Sign In Here</h1>
-//         </div>
-//     )
-// }
+
 
 const Alert = (props:AlertProps) => {
     return <MuiAlert elevation={6} variant='filled' {...props} />
@@ -22,40 +17,90 @@ const Alert = (props:AlertProps) => {
 
 const useStyles = makeStyles({
     googleButton:{
-        backgroundColor: 'rgb(66,133,244)',
-        marginTop: '2em',
+        background: '#81b29a',
+        '&:hover': {
+          background: '#3D405B',
+        },
+        // marginTop: '2em',
         padding: '0',
         color: 'white',
         height: '50px',
         width: '240px',
-        border: 'none',
         textAlign: 'center',
         boxShadow: 'rgb(0 0 0 / 25%) 0px 2px 4px 0px',
         fontSize: '16px',
-        lineHeight: '48px',
+        // lineHeight: '48px',
         display: 'block',
-        borderRadius: '1px',
+        borderRadius: '8px',
         fontFamily: 'Roboto, arial, sans-serif',
-        cursor: 'pointer'
+        // cursor: 'pointer',
+        marginLeft: '29%',
+        marginBottom: '5px'
     },
     googleLogo:{
         width: '48px',
         height: '48px',
         display: 'block'
     },
-    typographyStyle: {
-        fontFamily: 'Roboto, arial, sans-serif;',
-        textAlign: 'center',
-        fontSize: '2em'
-    },
+
     containerStyle: {
-        marginTop: '2em'
+        marginTop: '150px'
     },
     snackBar: {
         color: 'white',
         backgroundColor: '#4caf50'
-    }
-
+    },
+    signout:{
+        background: '#3d405b',
+    '&:hover': {
+      background: '#81b29a',
+    },
+    color: 'white',
+    marginLeft: '29%',
+    padding: '0',
+    height: '50px',
+    width: '240px',
+    textAlign: 'center',
+    boxShadow: 'rgb(0 0 0 / 25%) 0px 2px 4px 0px',
+    fontSize: '16px',
+    borderRadius: 8
+    },
+    root:{
+        padding: '0',
+        margin: '0',
+    },
+    navbar_container: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        background: '#81b29a',
+        borderRadius: 15,
+        width: '96%',
+        marginLeft: '2%'
+    },
+    logo:{
+        margin: '0 0 0 0.45em'
+    },
+    logo_a: {
+        color: 'rgb(28,24,22)'
+    },
+    logo_navigation: {
+        listStyle: 'none',
+        textTransform: 'uppercase',
+        textDecoration: 'none'
+    },
+    navigation: {
+        display: 'flex'
+    },
+    nav_a:{
+        display: 'block',
+        padding: '1em',
+        color: 'black',
+        '&:hover': {
+            color: '#f4f1de',
+        }
+    },
+    
 })
 
 
@@ -67,7 +112,7 @@ interface SignInProps{
 }
 
 export const SignIn = withRouter( (props:SignInProps) => {
-    const auth = useAuth();
+    // const auth = useAuth();
     const classes = useStyles();
     const {history} = props;
     const [open,setOpen] = useState(false);
@@ -81,48 +126,56 @@ export const SignIn = withRouter( (props:SignInProps) => {
             return;
         }
         setOpen(false)
-        history.push('/')
+        history.push('/recipe')
     }
 
-    const sign_in = async () => {
-        const response = await auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
-        if(response.user){
-            handleSnackOpen()
-        }
-    }
+    // const sign_in = async () => {
+    //     const response = await auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
+    //     if(response.user){
+    //         handleSnackOpen()
+    //     }
+    // }
 
-    const sign_out = async () => {
-        await auth.signOut();
-    }
+    // const sign_out = async () => {
+    //     await auth.signOut();
+    // }
 
     return (
-        <div>
-            <Container maxWidth = 'sm' className={classes.containerStyle}>
-                <Typography className={classes.typographyStyle}>Sign In Below</Typography>
-                {/* <form>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <Input  name="email" placeholder='Place Email Here' />
+        
+        <div className={classes.root}>
+            <nav>
+                <div className={classes.navbar_container}>
+                    <h1 className={ `${classes.logo} `}>
+                        <a href="#" className={ `${classes.logo_a} ${classes.logo_navigation}` }>Plant Powered</a>
+                    </h1>
+                    <ul className={ `${classes.navigation} ${classes.logo_navigation}` }>
+                        <li>
+                            <Link to='/' className={classes.nav_a}>Home</Link>
+                        </li>
+                    </ul>
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <Input  name="password" placeholder='Place Password Here' />
-                </div>
-                <Button type='submit' variant='contained' color='primary'>Submit</Button>
-                </form> */}
-                
-                <AuthCheck fallback={
-                    <Button className={classes.googleButton} onClick={sign_in}>Sign In With Google</Button>
-                }>
-                    <Button variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button>
-                </AuthCheck>
-                <Snackbar message={'Success'} open={open} autoHideDuration={1000} onClose={handleSnackClose}>
-                <Alert onClose={handleSnackClose} severity="success">
-                    Successful Sign In
-                </Alert>
-                </Snackbar>
+            </nav>
+            <div>
+                <Container maxWidth = 'sm' className={classes.containerStyle}>
+                    
+                    {/* <AuthCheck fallback={
+                        <Button className={classes.googleButton} onClick={sign_in}>Sign In With Google</Button>
+                    }> */}
+                        <Button className={classes.googleButton}>Sign In With Google</Button>
+                        {/* <Button variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button> */}
+                        <Button className={classes.signout}>Sign Out</Button>
+                    {/* </AuthCheck> */}
+                    <Snackbar message={'Success'} open={open} autoHideDuration={1000} onClose={handleSnackClose}>
+                    <Alert onClose={handleSnackClose} severity="success">
+                        Successful Sign In
+                    </Alert>
+                    </Snackbar>
 
-            </Container>
+                </Container>
+            </div>
+            
+            
         </div>
+
     )
 })

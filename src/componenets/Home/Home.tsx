@@ -1,26 +1,18 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-// import pasta from '../../assets/images/pasta.jpg'
 import { Link } from 'react-router-dom';
-// import { flexbox } from '@material-ui/system';
 import peaches1 from '../../assets/images/peaches1.jpg';
 import cow1 from '../../assets/images/cow1.jpg';
 import earth1 from '../../assets/images/earth1.jpg';
-import { Input } from '../sharedComponents/input'
+import { Input } from '../sharedComponents/input';
+import { AuthCheck } from 'reactfire';
 
 
 const useStyles = makeStyles({
     root:{
         padding: '0',
         margin: '0',
-        // background: '#3D405B'
-        // backgroundImage: `url(${pasta})`,
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-        // backgroundPosition: 'center',
-        // position: 'absolute',
-        // opacity: 0.55,
     },
     navbar_container: {
         display: 'flex',
@@ -56,31 +48,19 @@ const useStyles = makeStyles({
     },
     
     main: {
-        // display: 'flex',
-        
+        display: 'flex',
         background: '#F4F1DE',
         borderRadius: 15,
         marginLeft: '5%',
         marginTop: '3%',
         width: '90%',
         height: '10%',
-        
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-        // backgroundPosition: 'center',
-        // position: 'absolute',
-        // opacity: 0.55,
     },
     main_text:{
-        // display: 'flex',
+        display: 'flex',
         textAlign: 'center',
-        // marginLeft: '10%',
-        // position: 'relative',
-        // top: '50%',
-        // left: '50%',
-        // transform: 'translate(-50%, -50%)',
-        // color: '#333d29',
-        paddingTop: '100px',
+        marginLeft: '18%',
+        paddingTop: '90px',
         paddingBottom: '100px',
        
     },
@@ -101,56 +81,35 @@ const useStyles = makeStyles({
     motivational_text:{
         display: 'flex',
         color: 'white',
-        // top: '65%',
-        // left: '15%',
-        // position: 'absolute',
         background: '#81b29a',
         padding: '25px',
         borderRadius: 7,
-        // class: 'row col-sm-6',
-        // justifyContent: "center",
-        
     },
     diet_facts_text:{
         display: 'flex',
         color: 'white',
-        // top: '65%',
-        // left: '55%',
-        // position: 'absolute',
         background: '#81b29a',
         padding: '25px',
         borderRadius: 7,
-        // justifyContent: "flex-end"
     },
 
     motivational_text2:{
         display: 'flex',
         color: 'white',
-        // top: '65%',
-        // left: '15%',
-        // position: 'absolute',
         background: '#f2cc8f',
         padding: '25px',
         borderRadius: 7,
-        // class: 'row col-sm-6',
-        // justifyContent: "center",
-        
     },
     diet_facts_text2:{
         display: 'flex',
         color: 'black',
-        // top: '65%',
-        // left: '55%',
-        // position: 'absolute',
         background: '#f2cc8f',
         padding: '25px',
         borderRadius: 7,
-        // justifyContent: "flex-end"
     },
     
     body1:{
         display: 'flex',
-        // border: '2px solid black',
         justifyContent: 'space-between',
         marginLeft: '10%',
         marginTop: '-2%',
@@ -186,7 +145,15 @@ const useStyles = makeStyles({
         marginTop: '20px'
     },
     panText:{
-        fontSize: 40
+        fontSize: 40,
+        marginBottom: 2,
+    },
+    googleSign:{
+        display: 'flex',
+        paddingTop: '90px',
+        paddingBottom: '100px',
+        marginLeft: '10%',
+        textAlign: 'center',
     }
     
 })
@@ -198,9 +165,6 @@ interface Props {
 export const Home = ( props:Props) => {
     
     const classes = useStyles();
-
-    const [show,setShow]=useState(true)
-    
     
     return (
         <div className={classes.root}>
@@ -211,16 +175,19 @@ export const Home = ( props:Props) => {
                     </h1>
                     <ul className={ `${classes.navigation} ${classes.logo_navigation}` }>
                         <li>
-                            <Link to='/' href="" className={classes.nav_a}>Home</Link>
+                            <Link to='/' className={classes.nav_a}>Home</Link>
                         </li>
                         <li>
-                            <Link to='recipe' href="" className={classes.nav_a}>Recipe</Link>
+                            <Link to='recipe' className={classes.nav_a}>Recipe</Link>
                         </li>
                         <li>
-                            <Link to='favorites' href="" className={classes.nav_a}>Favorites</Link>
+                            <Link to='favorites' className={classes.nav_a}>Favorites</Link>
                         </li>
                         <li>
-                            <Link to='signin' href="" className={classes.nav_a}>Sign In</Link>
+                            <Link to='signin' className={classes.nav_a}>Sign In</Link>
+                        </li>
+                        <li>
+                            <Link to='signin' className={classes.nav_a}>Sign Out</Link>
                         </li>
                     </ul>
                 </div>
@@ -228,28 +195,25 @@ export const Home = ( props:Props) => {
             <main className={classes.main}>
                 <div className={classes.main_text}>
                     <ul>
-
+                    <h3>Welcome to</h3>
                     <h1 className={classes.panText}>{ props.title }</h1>
-                    <h3>Plant Based Recipes. 45 Minutes.</h3>
-                    <h3>No Bologna</h3>
+                    <h2>We're happy you're here.</h2>
+                    <h4>Sign in and go to the recipe page to get 3 vegan</h4>
+                    <h4>meal options to choose from!</h4>
                     <p>&nbsp;</p>
-                    {/* <p>Get 3 options.  Choose 1.</p> */}
-                    {/* <Button href="#target" className={classes.button}>Need Motivation?</Button> */}
-                    <Link to='signin' className={classes.button}>Sign in with Google</Link>
                     </ul>
-  
-                {/* <form>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <Input name="email" placeholder='Place Email Here' />
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <Input name="password" placeholder='Place Password Here' />
-                </div>
-                <Button className={classes.button} type='submit'>Submit</Button>
-                </form> */}
-                 
+                <div className={classes.googleSign}>
+
+                    <ul>
+                    <h3>It's easy to make an account!</h3>
+                    <h3>All you have to do is</h3>
+                    <li>&nbsp;</li>
+                    <Link to='signin' className={classes.button}>Sign in with Google</Link>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <h5>Scroll Down for Some Motivation</h5>
+                    </ul>
                 </div>
             </main>
             <section id="target" className={classes.body1}>  

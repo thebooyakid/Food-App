@@ -10,8 +10,6 @@ const useStyles = makeStyles({
   root:{
     padding: '0',
     margin: '0',
-    // background: '#3d405b',
-    // height: '170vh'
   },
   navbar_container: {
       display: 'flex',
@@ -63,17 +61,11 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    // background: '#F4F1DE',
-    // borderRadius: 15,
-    // width: '100%',
-    // height: '150%',
-    // position: 'absolute',
     background: '#F4F1DE',
     borderRadius: 15,
     marginLeft: '5%',
     marginTop: '3%',
     width: '90%',
-    // height: '100%',
     paddingBottom: '20px',
     paddingTop: '10px'
   },
@@ -89,45 +81,29 @@ const useStyles = makeStyles({
   },
   allergenReminder: {
     fontSize: 14,
-  }
-
-
+  },
 })
-
-
 
 
 export function Recipe() {
   const [mealData, setMealData] = useState(null);
-  // const [calories, setCalories] = useState('');
+
   const [allergies, setAllergies] = useState('');
-  // const [ingredient, setIngredients] = useState('')
-  
-  
-  // function handleChange(event){
-  //   setCalories(event.target.value);
-  // }
 
   function handleChange(event){
     setAllergies(event.target.value);
-    // setIngredients(event.target.value);
+
   }
 
   function getMealData(){
     fetch(
       `https://api.spoonacular.com/mealplanner/generate?apiKey=c899723440494d5a91d95fc2c51a6a98&diet=vegan&excludeIngredients=vodka,persimmon,rum,tequila,alcohol,${allergies}&timeFrame=day`
-      // &targetCalories=${calories}
-      // &includeIngredients${ingredient}
-      // `https://api.spoonacular.com/recipes/complexSearch?apiKey=c899723440494d5a91d95fc2c51a6a98&diet=vegan&excludeIngredients=vodka`
     )
     .then((response) => response.json())
     .then((data) => {
       setMealData(data);
       console.log(data);
     })
-    .catch(() => {
-      console.log("error");
-    });
   }
 
   const classes = useStyles();
@@ -146,12 +122,7 @@ export function Recipe() {
                 <li>
                   <Link to='favorites' href="" className={classes.nav_a}>Favorites</Link>
                 </li>
-                {/* <li>
-                    <Link to='recipe' href="" className={classes.nav_a}>Recipe</Link>
-                </li>
-                <li>
-                    <Link to='signin' href="" className={classes.nav_a}>Sign In</Link>
-                </li> */}
+             
             </ul>
         </div>
       </nav>
@@ -161,7 +132,6 @@ export function Recipe() {
     <section className={classes.controls}>
       <h1 className={classes.welcome}>Welcome to the Recipe Generator</h1>
       <h3>Press the Button Below to get 3 delicious Meal Options</h3>
-      {/* <p>Don't Forget to Fill In the Box if There are Any Foods to Avoid</p> */}
       <p>&nbsp;</p>
       <p className={classes.allergenReminder}>Enter any foods you wish to avoid</p>
       <p>&nbsp;</p>
