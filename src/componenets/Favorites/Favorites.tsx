@@ -57,7 +57,7 @@ export const Favorites = () => {
 
     const getData = () => {
         let data = localStorage.getItem('myData') as string;
-        data = JSON.parse(data)
+        const faveData = JSON.parse(data)
         console.log(data)
         return({data})
     }
@@ -83,9 +83,12 @@ export const Favorites = () => {
             
             <main className={classes.main}>
                 <Button onClick={ () => getData() }>Get Favorites</Button>
-                {/* {data.meals.map((meal: any) => {
+                {/* {Cooldata.meals.map((meal: any) => {
                         return <Meal key={meal.id} meal={meal} />
                 })}   */}
+                
+                
+
                 <h1 className={classes.comingSoon}>Favorites Page Coming Soon</h1>
                
             

@@ -90,7 +90,7 @@ export function Recipe() {
 
   const [allergies, setAllergies] = useState('');
 
-  function handleChange(event){
+  function handleChange(event:any){
     setAllergies(event.target.value);
 
   }

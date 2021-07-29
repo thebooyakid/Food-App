@@ -4,13 +4,15 @@ import './styles.css';
 import { Home, SignIn, Recipe, Favorites } from './componenets';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import { FirebaseAppProvider, AuthCheck } from 'reactfire';
-import 'firebase/auth';
-// import { firebaseConfig } from './firebaseConfig'
+// import { FirebaseAppProvider, AuthCheck } from 'reactfire';
+// import 'firebase/auth';
+// import { firebaseConfig } from './firebaseConfig';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <FirebaseAppProvider firebaseconfig={firebaseConfig}> */}
+    {/* <FirebaseAppProvider firebaseconfig={firebaseConfig} suspense = {true}> */}
+  
     <Router>
       <Switch>
         <Route exact path='/'>
@@ -31,6 +33,7 @@ ReactDOM.render(
     
       </Switch>
     </Router>
+  
     {/* </FirebaseAppProvider> */}
   </React.StrictMode>,
   document.getElementById('root')

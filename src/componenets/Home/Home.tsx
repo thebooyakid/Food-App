@@ -5,7 +5,7 @@ import peaches1 from '../../assets/images/peaches1.jpg';
 import cow1 from '../../assets/images/cow1.jpg';
 import earth1 from '../../assets/images/earth1.jpg';
 import { Input } from '../sharedComponents/input';
-import { AuthCheck } from 'reactfire';
+// import { AuthCheck } from 'reactfire';
 
 
 const useStyles = makeStyles({
@@ -175,11 +175,11 @@ export const Home = ( props:Props) => {
                             <Link to='/' className={classes.nav_a}>Home</Link>
                         </li>
                         <Suspense fallback = { 'loading...'}>
-                        <AuthCheck fallback={
+                        {/* <AuthCheck fallback={ */}
                         <li>
                             <Link to='signin' className={classes.nav_a}>Sign In</Link>
                         </li>
-                        }>
+                        {/* }> */}
                         <li>
                             <Link to='recipe' className={classes.nav_a}>Recipe</Link>
                         </li>
@@ -189,7 +189,7 @@ export const Home = ( props:Props) => {
                         <li>
                             <Link to='signin' className={classes.nav_a}>Sign Out</Link>
                         </li>
-                        </AuthCheck>
+                        {/* </AuthCheck> */}
                         </Suspense>
                     </ul>
                 </div>

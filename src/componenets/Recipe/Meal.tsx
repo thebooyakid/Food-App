@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     },
 })
 
-export default function Meal({meal}) {
+export default function Meal({meal}:any) {
     
     const [imageUrl, setImageUrl] = useState ("")
 
