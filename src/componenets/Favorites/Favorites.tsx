@@ -45,6 +45,9 @@ const useStyles = makeStyles({
     main: {
         background: 'white',
     },
+    comingSoon: {
+        textAlign: 'center'
+    }
 })
 
 
@@ -77,11 +80,13 @@ export const Favorites = () => {
                     </ul>
                 </div>
             </nav>
+            
             <main className={classes.main}>
                 <Button onClick={ () => getData() }>Get Favorites</Button>
-                {/* {data1.meals.map((meal: any) => {
+                {/* {data.meals.map((meal: any) => {
                         return <Meal key={meal.id} meal={meal} />
                 })}   */}
+                <h1 className={classes.comingSoon}>Favorites Page Coming Soon</h1>
                
             
             </main>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import { useAuth, AuthCheck } from 'reactfire';
 import 'firebase/auth';
 import { Input } from '../sharedComponents/input';
@@ -21,7 +21,6 @@ const useStyles = makeStyles({
         '&:hover': {
           background: '#3D405B',
         },
-        // marginTop: '2em',
         padding: '0',
         color: 'white',
         height: '50px',
@@ -29,11 +28,9 @@ const useStyles = makeStyles({
         textAlign: 'center',
         boxShadow: 'rgb(0 0 0 / 25%) 0px 2px 4px 0px',
         fontSize: '16px',
-        // lineHeight: '48px',
         display: 'block',
         borderRadius: '8px',
         fontFamily: 'Roboto, arial, sans-serif',
-        // cursor: 'pointer',
         marginLeft: '29%',
         marginBottom: '5px'
     },
@@ -112,7 +109,7 @@ interface SignInProps{
 }
 
 export const SignIn = withRouter( (props:SignInProps) => {
-    // const auth = useAuth();
+    const auth = useAuth();
     const classes = useStyles();
     const {history} = props;
     const [open,setOpen] = useState(false);
@@ -129,16 +126,16 @@ export const SignIn = withRouter( (props:SignInProps) => {
         history.push('/recipe')
     }
 
-    // const sign_in = async () => {
-    //     const response = await auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
-    //     if(response.user){
-    //         handleSnackOpen()
-    //     }
-    // }
+    const sign_in = async () => {
+        const response = await auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
+        if(response.user){
+            handleSnackOpen()
+        }
+    }
 
-    // const sign_out = async () => {
-    //     await auth.signOut();
-    // }
+    const sign_out = async () => {
+        await auth.signOut();
+    }
 
     return (
         
@@ -158,13 +155,13 @@ export const SignIn = withRouter( (props:SignInProps) => {
             <div>
                 <Container maxWidth = 'sm' className={classes.containerStyle}>
                     
-                    {/* <AuthCheck fallback={
+                    <AuthCheck fallback={
                         <Button className={classes.googleButton} onClick={sign_in}>Sign In With Google</Button>
-                    }> */}
+                    }>
                         <Button className={classes.googleButton}>Sign In With Google</Button>
                         {/* <Button variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button> */}
-                        <Button className={classes.signout}>Sign Out</Button>
-                    {/* </AuthCheck> */}
+                        <Button onClick={sign_out} className={classes.signout}>Sign Out</Button>
+                    </AuthCheck>
                     <Snackbar message={'Success'} open={open} autoHideDuration={1000} onClose={handleSnackClose}>
                     <Alert onClose={handleSnackClose} severity="success">
                         Successful Sign In

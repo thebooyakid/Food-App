@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, Suspense } from 'react';
 import { makeStyles } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import peaches1 from '../../assets/images/peaches1.jpg';
 import cow1 from '../../assets/images/cow1.jpg';
@@ -70,12 +69,10 @@ const useStyles = makeStyles({
           background: '#3D405B',
         },
         color: 'white',
-        border: 0,
         borderRadius: 6,
         boxShadow: '0 3px 5px 2px grey',
         height: 30,
-        padding: '5px 25px', 
-        margin: '2px 0',
+        padding: '7px 25px', 
         textDecoration: 'none',
     },
     motivational_text:{
@@ -177,6 +174,12 @@ export const Home = ( props:Props) => {
                         <li>
                             <Link to='/' className={classes.nav_a}>Home</Link>
                         </li>
+                        <Suspense fallback = { 'loading...'}>
+                        <AuthCheck fallback={
+                        <li>
+                            <Link to='signin' className={classes.nav_a}>Sign In</Link>
+                        </li>
+                        }>
                         <li>
                             <Link to='recipe' className={classes.nav_a}>Recipe</Link>
                         </li>
@@ -184,11 +187,10 @@ export const Home = ( props:Props) => {
                             <Link to='favorites' className={classes.nav_a}>Favorites</Link>
                         </li>
                         <li>
-                            <Link to='signin' className={classes.nav_a}>Sign In</Link>
-                        </li>
-                        <li>
                             <Link to='signin' className={classes.nav_a}>Sign Out</Link>
                         </li>
+                        </AuthCheck>
+                        </Suspense>
                     </ul>
                 </div>
             </nav>
@@ -197,9 +199,10 @@ export const Home = ( props:Props) => {
                     <ul>
                     <h3>Welcome to</h3>
                     <h1 className={classes.panText}>{ props.title }</h1>
-                    <h2>We're happy you're here.</h2>
+                    <h2>We're happy you're here</h2>
                     <h4>Sign in and go to the recipe page to get 3 vegan</h4>
                     <h4>meal options to choose from!</h4>
+                    <h4>Each dish can be on your plate in 45 minutes or less</h4>
                     <p>&nbsp;</p>
                     </ul>
                 </div>
@@ -212,6 +215,9 @@ export const Home = ( props:Props) => {
                     <Link to='signin' className={classes.button}>Sign in with Google</Link>
                     <li>&nbsp;</li>
                     <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    
                     <h5>Scroll Down for Some Motivation</h5>
                     </ul>
                 </div>

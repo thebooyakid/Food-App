@@ -68,7 +68,7 @@ export default function Meal({meal}) {
     const setData = () => {
         localStorage.setItem('myData', JSON.stringify(meal));
         console.log(meal)   
-    }
+    };
 
     const classes = useStyles();
 
